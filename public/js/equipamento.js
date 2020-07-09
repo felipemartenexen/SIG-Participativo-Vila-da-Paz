@@ -1,0 +1,37 @@
+var equipamento = {
+    "type": "FeatureCollection",
+    "name": "equipamentoPublicos",
+    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+    "features": [
+    { "type": "Feature", "properties": { "id": 1, "Equip_Publ": "QUADRAS ESPORTIVAS", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.780534195297797, -5.113675335071968 ] } },
+    { "type": "Feature", "properties": { "id": 2, "Equip_Publ": "PISTA DE SKATE", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.781568251979913, -5.114526995130541 ] } },
+    { "type": "Feature", "properties": { "id": 3, "Equip_Publ": "PISTA DE PATINAGEM", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.783442404111, -5.115326629602239 ] } },
+    { "type": "Feature", "properties": { "id": 4, "Equip_Publ": "PRAÇA TEMÁTICA", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.781684290015072, -5.113509343915846 ] } },
+    { "type": "Feature", "properties": { "id": 5, "Equip_Publ": "ANFI TEATRO", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.785371429124226, -5.116964821721905 ] } },
+    { "type": "Feature", "properties": { "id": 6, "Equip_Publ": "QUIOSQUES", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.782884012879357, -5.115568391602383 ] } },
+    { "type": "Feature", "properties": { "id": 7, "Equip_Publ": "ACESSOS", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.782618709869702, -5.115315623420196 ] } },
+    { "type": "Feature", "properties": { "id": 8, "Equip_Publ": "ESTACIONAMENTO", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.780234131462009, -5.113331579025083 ] } },
+    { "type": "Feature", "properties": { "id": 9, "Equip_Publ": "VIA URBANIZADA", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.782693202341221, -5.113758129030761 ] } },
+    { "type": "Feature", "properties": { "id": 10, "Equip_Publ": "PONTE E PASSARELA", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.789065003281159, -5.118722856587699 ] } },
+    { "type": "Feature", "properties": { "id": 11, "Equip_Publ": "TEATRO DA VILA DA PAZ", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.780641333709291, -5.112845053737511 ] } },
+    { "type": "Feature", "properties": { "id": 12, "Equip_Publ": "CENTRO DE TECNOLOGIA AMBIENTAL", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.784080348222275, -5.11576445340428 ] } },
+    { "type": "Feature", "properties": { "id": 13, "Equip_Publ": "CENTRO ESPORTIVO", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.787796174890858, -5.117030697612226 ] } },
+    { "type": "Feature", "properties": { "id": 14, "Equip_Publ": "CENTRO DE SERVIÇOS SOCIAIS", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.789841386081932, -5.118621226130555 ] } },
+    { "type": "Feature", "properties": { "id": 15, "Equip_Publ": "RESIDENCIAIS MULTIFAMILIARES", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.779847919003828, -5.114451330802176 ] } },
+    { "type": "Feature", "properties": { "id": 16, "Equip_Publ": "CANAL DE DRENAGEM", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.789392385036713, -5.118366885113105 ] } },
+    { "type": "Feature", "properties": { "id": 17, "Equip_Publ": "QUIOSQUES", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.788836100235343, -5.11878596842455 ] } },
+    { "type": "Feature", "properties": { "id": 18, "Equip_Publ": "QUIOSQUES", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.787524777748878, -5.116033293094386 ] } },
+    { "type": "Feature", "properties": { "id": 19, "Equip_Publ": "QUIOSQUES", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.781576542096737, -5.113099579986446 ] } },
+    { "type": "Feature", "properties": { "id": 20, "Equip_Publ": "ACESSOS", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.787341151054868, -5.116593239030767 ] } },
+    { "type": "Feature", "properties": { "id": 21, "Equip_Publ": "ESTACIONAMENTO", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.78087498061862, -5.112288221928966 ] } },
+    { "type": "Feature", "properties": { "id": 22, "Equip_Publ": "ESTACIONAMENTO", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.787478655460077, -5.116698811727218 ] } },
+    { "type": "Feature", "properties": { "id": 23, "Equip_Publ": "ESTACIONAMENTO", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.784388229479113, -5.115990918015375 ] } },
+    { "type": "Feature", "properties": { "id": 24, "Equip_Publ": "VIA URBANIZADA", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.782916469362711, -5.115669055947248 ] } },
+    { "type": "Feature", "properties": { "id": 25, "Equip_Publ": "VIA URBANIZADA", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.785451619440742, -5.117457693348801 ] } },
+    { "type": "Feature", "properties": { "id": 26, "Equip_Publ": "RESIDENCIAIS MULTIFAMILIARES", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.783677013164869, -5.116763664494805 ] } },
+    { "type": "Feature", "properties": { "id": 27, "Equip_Publ": "RESIDENCIAIS MULTIVINALITARIOS", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.787247354918094, -5.118550242119623 ] } },
+    { "type": "Feature", "properties": { "id": 28, "Equip_Publ": "CANAL DE DRENAGEM", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.782017769122277, -5.114550475848183 ] } },
+    { "type": "Feature", "properties": { "id": 29, "Equip_Publ": "VIA URBANIZADA", "Situacao": null }, "geometry": { "type": "Point", "coordinates": [ -42.787894402821813, -5.11844722727192 ] } }
+    ]
+    }
+    

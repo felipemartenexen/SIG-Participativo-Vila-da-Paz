@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Debora</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="js/equipamento.js"></script>
+    <script src="js/vila.js"></script>
+    <script src="js/lotesDesapropriados.js"></script>
+    <script src="js/cadastroFinal.js"></script>
+    <script src="js/logradouroViladaPaz.js"></script>
+    <script src="js/quadrasVilaDaPaz.js"></script>
+    <script src="js/main.js"></script>
+
+
+<!--Filter-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/src/leaflet-tag-filter-button.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/docs/assets/css/leaflet-easy-button.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/docs/assets/css/ripple.min.css">
+<script src="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/docs/assets/js/leaflet-easy-button.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/src/leaflet-tag-filter-button.js"></script>
+
+</head>
+
+<body>
+    <div id="boxes">
+        <div style="top: 199.5px; left: 551.5px; display: none;" id="dialog" class="window"> <strong>PPSIG ZEIS VILA DA PAZ</strong>
+          <div id="lorem">
+            <p style="text-align: center"> <strong>Orientando:</strong></br>Débora Araújo Carvalho </br>
+               <strong>Orientadora:</strong></br>Profª. Dra. Lucilene Antunes Correia Marques de Sá </br>
+               <img src="icones/logo_uf.jpeg"> <img src="icones/logo_pos.jpeg" style="width: 435px;">          
+            </p>
+          </div>
+          <div id="popupfoot"> <a href="#" class="close agree">Entrar</a></div>
+        </div>
+        <div style="width: 1478px; font-size: 32pt; color:white; height: 602px; display: none; opacity: 0.8;" id="mask"></div>
+      </div>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script> 
+      <script src="js/main.js"></script>
+
+    <div id="mapid" style="width: 100%; height: 800px;"></div>
+    <script>
+
+        var map = L.map('mapid').setView([-5.115939439861308, -42.7846723794], 17);
+
+    var openstreetmap =     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+
+        var template = '<div id="formulario"><div class="form-group"><label class="control-label">Nível de Importância</label><select class="form-control" id= "importancia" name="">        <option value="1">Sem importância</option><option value="2">Pouco importante</option><option value="3">Mais ou Menos</option><option value="4">Ajuda Muito</option><option value="5">Essencial</option></select></div>  <div class="form-group">    <label for="exampleFormControlTextarea1">Qual sua opinião ?</label><textarea class="form-control" id="opiniao" rows="3"></textarea></div><button id="enviar" type="submit" class="btn btn-primary">Enviar</button></div>'
+
+            var styleVila = {
+                            weight: 3,
+                            opacity: 1,
+                            color: 'red',
+                            dashArray: '3',
+                            fillOpacity: 0
+                        };
+            var styleQuadras = {
+                            weight: 3,
+                            opacity: 1,
+                            color: 'green',
+                            dashArray: '3',
+                            fillOpacity: 0
+                         };
+            var styleLogradouro = {
+                        "color": "#ff7800",
+                        "weight": 5,
+                        "opacity": 0.65
+                        };
+
+            var iconeCadastroFinal = {
+                        radius: 3,
+                        fillColor: "#ff7800",
+                        color: "#000",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                        };
+            
+                        var cadastroFinal  =  L.geoJSON(cadastroFinal, {
+                            pointToLayer: function (feature, latlng) {
+                                return L.circleMarker(latlng, iconeCadastroFinal);
+                            }
+                        });
+
+                var iconeDesapropriados = {
+                        radius: 3,
+                        fillColor: "#0000ff",
+                        color: "#000",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                        };
+    
+                var cadastroLotesDesapropriados  =  L.geoJSON(lotesDesapropriados, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, iconeDesapropriados);
+                    }
+                });
+
+
+
+
+        var vilaDaPaz = L.geoJSON(vila, {style: styleVila}).addTo(map);
+        //var cadastroLotesDesapropriados = L.geoJSON(lotesDesapropriados);
+        var logradouro = L.geoJSON(logradouro, {style: styleLogradouro});
+        var quadrasViladaPaz = L.geoJSON(quadrasVilaDaPaz, {style: styleQuadras});
+
+        var equipIcone = L.Icon.extend({
+    options: {
+        iconSize:     [35, 35],
+    }
+});
+
+
+        var equipamentoPublico = L.geoJSON(equipamento, {
+            onEachFeature: function (feature, layer) {
+                var nomeEstrutura = feature.properties.Equip_Publ
+                var asdf = '<p><h4>' + nomeEstrutura + '</h4></p>'
+                layer.bindPopup(asdf + template).on("popupopen", () => {
+                   
+                    $("#enviar").on("click", e => {
+                        alert('Sua resposta foi enviada. Obrigado pela Participação.');
+                        if ('geolocation' in navigator) {
+                           
+                            console.log('Localização Disponível')
+                            navigator.geolocation.getCurrentPosition(async function (position) {
+                                
+                                var lat = position.coords.latitude
+                                var long = position.coords.longitude
+                                var importancia = document.getElementById('importancia').value;
+                                var opiniao = document.getElementById('opiniao').value;
+                               
+                                console.log(position.coords.latitude)
+                                console.log(position.coords.longitude)
+                                console.log(nomeEstrutura)
+                                console.log(importancia)
+                                console.log(opiniao)
+
+                                var data = { lat, long, nomeEstrutura, importancia, opiniao }
+                                var options = {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    body: JSON.stringify(data)
+                                }
+                                var response = await fetch('/api', options);
+                                var json = await response.json();
+                                console.log(json);
+                            });
+                        } else {
+                            console.log('Localização Não Disponível')
+                        }
+                    });
+                });
+            },
+            pointToLayer: function (feature, latlng) {
+
+        var estacionamentoIcone = new equipIcone({iconUrl: 'icones/estacionamento.png'});
+        var centroEsportivoIcone = new equipIcone({iconUrl: 'icones/centroEsportivo.png'});
+        var drenagemIcone = new equipIcone({iconUrl: 'icones/drenagem.png'});
+        var patinagemIcone = new equipIcone({iconUrl: 'icones/patinagem.png'});
+        var pracaIcone = new equipIcone({iconUrl: 'icones/praca.png'});
+        var quiosqueIcone = new equipIcone({iconUrl: 'icones/quiosque2.png'});
+        var residencialIcone = new equipIcone({iconUrl: 'icones/residencial.png'});
+        var servicoSocialIcone = new equipIcone({iconUrl: 'icones/servicoSocial.png'});
+        var skateIcone = new equipIcone({iconUrl: 'icones/skate.png'});
+        var tecAmbientalIcone = new equipIcone({iconUrl: 'icones/tecAmbiental.png'});
+        var treatoIcone = new equipIcone({iconUrl: 'icones/treato.png'});
+        var viaUrbanizadaIcone = new equipIcone({iconUrl: 'icones/viaUrbanizada.png'});
+        var quadraIcone = new equipIcone({iconUrl: 'icones/quadra.png'});
+        var acessoIcone = new equipIcone({iconUrl: 'icones/acesso2.png'});
+        var ponteIcone = new equipIcone({iconUrl: 'icones/ponte2.png'});
+        var multiIcone = new equipIcone({iconUrl: 'icones/multi.png'});
+
+                switch (feature.properties.Equip_Publ) {
+                    case 'ESTACIONAMENTO':
+                    var markerEstacionamento = L.marker(latlng,{icon: estacionamentoIcone, tags: ['Estacionamento']});
+                    return  markerEstacionamento;
+                    case 'CENTRO ESPORTIVO':
+                    var markerCentroEsportivo = L.marker(latlng,{icon: centroEsportivoIcone});
+                    return  markerCentroEsportivo;
+                    case 'CANAL DE DRENAGEM':
+                    var markerDrenagem = L.marker(latlng,{icon: drenagemIcone});
+                    return  markerDrenagem;
+                    case 'PISTA DE PATINAGEM':
+                    var markerPatinagem = L.marker(latlng,{icon: patinagemIcone});
+                    return  markerPatinagem;
+                    case 'PRAÇA TEMÁTICA':
+                    var markerPraca = L.marker(latlng,{icon: pracaIcone});
+                    return  markerPraca;
+                    case 'QUIOSQUES':
+                    var markerQuiosque = L.marker(latlng,{icon: quiosqueIcone});
+                    return  markerQuiosque;
+                    case 'RESIDENCIAIS MULTIFAMILIARES':
+                    var markerResidencial = L.marker(latlng,{icon: residencialIcone});
+                    return  markerResidencial;
+                    case 'CENTRO DE SERVIÇOS SOCIAIS':
+                    var markerServicoSocial = L.marker(latlng,{icon: servicoSocialIcone});
+                    return  markerServicoSocial;
+                    case 'PISTA DE SKATE':
+                    var markerSkate = L.marker(latlng,{icon: skateIcone});
+                    return  markerSkate;
+                    case 'CENTRO DE TECNOLOGIA AMBIENTAL':
+                    var markerTecAmbiental = L.marker(latlng,{icon: tecAmbientalIcone});
+                    return  markerTecAmbiental;
+                    case 'TEATRO DA VILA DA PAZ':
+                    var markerTreato = L.marker(latlng,{icon: treatoIcone});
+                    return  markerTreato;
+                    case 'ANFI TEATRO':
+                    var markerTreato = L.marker(latlng,{icon: treatoIcone});
+                    return  markerTreato;
+                    case 'VIA URBANIZADA':
+                    var markerViaUrbanizada = L.marker(latlng,{icon: viaUrbanizadaIcone});
+                    return  markerViaUrbanizada;
+                    case 'QUADRAS ESPORTIVAS':
+                    var markerQuadra = L.marker(latlng,{icon: quadraIcone});
+                    return  markerQuadra;
+                    case 'ACESSOS':
+                    var markerAcesso = L.marker(latlng,{icon: acessoIcone});
+                    return  markerAcesso;
+                    case 'PONTE E PASSARELA':
+                    var markerPonteAcesso = L.marker(latlng,{icon: ponteIcone});
+                    return  markerPonteAcesso;
+                    case 'RESIDENCIAIS MULTIVINALITARIOS':
+                    var markerMulti = L.marker(latlng,{icon: multiIcone});
+                    return  markerMulti;
+                    default:
+                    var marker = L.marker(latlng);
+                    return  marker;
+                        break;
+                }
+        }
+
+        }).addTo(map);
+/*
+        L.control.tagFilterButton({
+        data: ['Estacionamento'],
+        icon: '<img src="icones/filter.png">',
+        filterOnEveryClick: true
+    }).addTo( map );
+*/
+var baseMaps = {
+    "OpenStreetMaps": openstreetmap
+    //"Streets": streets
+};
+
+
+        
+var overlayMaps = {
+    "Vila da Paz": vilaDaPaz,
+    "Lotes Desapropriados": cadastroLotesDesapropriados,
+    "Cadastro Final": cadastroFinal,
+    "Logradouro": logradouro,
+    "Quadras": quadrasViladaPaz
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+    </script>
+
+</body>
+
+</html>

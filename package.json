@@ -1,0 +1,21 @@
+{
+  "name": "mestrado",
+  "version": "1.0.0",
+  "description": "sigweb participativo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sig",
+    "map"
+  ],
+  "author": "Felipe Martenexen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nedb": "^1.8.0",
+    "nodemon": "^2.0.4"
+  }
+}
