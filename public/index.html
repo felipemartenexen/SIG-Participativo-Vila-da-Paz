@@ -109,7 +109,10 @@
                         var cadastroFinal  =  L.geoJSON(cadastroFinal, {
                             pointToLayer: function (feature, latlng) {
                                 return L.circleMarker(latlng, iconeCadastroFinal);
-                            }
+                            },
+                            onEachFeature: function (feature, layer) {
+                        var label = '<p style="text-align:center;">' + feature.properties.Proprietar + '</p>'
+                        layer.bindPopup(label)}
                         });
 
                 var iconeDesapropriados = {
@@ -124,14 +127,19 @@
                 var cadastroLotesDesapropriados  =  L.geoJSON(lotesDesapropriados, {
                     pointToLayer: function (feature, latlng) {
                         return L.circleMarker(latlng, iconeDesapropriados);
-                    }
-                });
+                    },
+                    onEachFeature: function (feature, layer) {
+                        var label = '<p style="text-align:center;">' + feature.properties.Proprietar + '</p>'
+                        layer.bindPopup(label)}
+                }              
+                
+                );
 
 
 
 
         var vilaDaPaz = L.geoJSON(vila, {style: styleVila}).addTo(map);
-        //var cadastroLotesDesapropriados = L.geoJSON(lotesDesapropriados);
+        
         var logradouro = L.geoJSON(logradouro, {style: styleLogradouro});
         var quadrasViladaPaz = L.geoJSON(quadrasVilaDaPaz, {style: styleQuadras});
 

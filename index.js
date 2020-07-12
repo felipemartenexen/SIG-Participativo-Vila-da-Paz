@@ -1,8 +1,12 @@
 const express = require('express');
-const Datastore = require('nedb')
-const app = express();
-app.listen(3000,() => console.log('Conectado a porta 3000'));
+const Datastore = require('nedb');
+require('dotenv').config();
 
+const app = express();
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+    console.log(`Iniciando Servidor em ${port}`);
+});
 app.use(express.static('public'));
 app.use(express.json({limit: '1mb'}))
 
@@ -25,6 +29,3 @@ app.post('/api',(request, response) =>{
         opiniao: data.opiniao
     })
 });
-
-app.listen(process.env.PORT || 5000);
-console.log('Aplicação Rodando');
